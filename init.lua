@@ -1,7 +1,5 @@
 require("aiosdev")
 
--- vim.cmd.set({ args = {"guifont="} })
-
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
