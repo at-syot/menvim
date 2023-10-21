@@ -13,13 +13,6 @@ return require('packer').startup(function(use)
   }
 
   -- color schemes
-  use({ 
-	  'rose-pine/neovim', 
-	  as = 'rose-pine',
-	  config = function()
-		  vim.cmd('colorscheme rose-pine')
-	  end
-  })
   use("savq/melange-nvim")
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -67,4 +60,10 @@ return require('packer').startup(function(use)
 
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
 end)
