@@ -59,6 +59,10 @@ cmp.setup({
     ['J'] = cmp.mapping.select_next_item(),
     ['K'] = cmp.mapping.select_prev_item(),
     ['<C-Space>'] = cmp.mapping.complete(),
-  })
+  }),
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  }
 })
 
