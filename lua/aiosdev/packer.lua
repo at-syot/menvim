@@ -40,6 +40,9 @@ return require('packer').startup(function(use)
     }
   })
 
+  -- auto format
+  use('sbdchd/neoformat')
+
   -- auto paring
   use({
     "windwp/nvim-autopairs",

@@ -18,12 +18,13 @@ require('mason-lspconfig').setup({
   -- Replace the language servers listed here
   -- with the ones you want to install
   ensure_installed = {
-	  "tsserver", 
-	  "gopls", 
+	  "tsserver",
+	  "gopls",
 	  "svelte",
 	  "html",
 	  "tailwindcss",
-    "volar"
+    "volar",
+    "elixirls"
   },
   handlers = {
     lsp_zero.default_setup,
@@ -38,10 +39,11 @@ lsp_zero.format_on_save({
 	},
 	servers = {
 		['lua'] = {'lua'},
-    ['tsserver'] = {'javascript', 'typescript'},
-		['svelte'] = {'svelte'},
-    ['volar'] = {'vue'},
-		['gopls'] = {'go'}
+    -- ['tsserver'] = {'javascript', 'typescript'},
+		-- ['svelte'] = {'svelte'},
+    -- ['volar'] = {'vue'},
+		['gopls'] = {'go'},
+    ['elixirls'] = {'elixir', 'ex'},
 	}
 })
 
