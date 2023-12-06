@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
 
   -- color schemes
   use("savq/melange-nvim")
+  use({"catppuccin/nvim", as = "catppuccin" })
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('mbbill/undotree')
@@ -61,12 +62,26 @@ return require('packer').startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
 
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
-
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
+  use({ 
+    "iamcco/markdown-preview.nvim", 
+    run = "cd app && npm install", 
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, 
+    ft = { "markdown" }, 
+  })
+    
+  -- commentor
+  --
+  --[[ config = function()
       require('Comment').setup()
-    end
+  end ]]
+
+  use('numToStr/Comment.nvim')
+  use('JoosepAlviste/nvim-ts-context-commentstring')
+  --
+
+  -- lualine
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
 end)

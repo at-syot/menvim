@@ -1,6 +1,5 @@
 require("aiosdev")
 
-
 vim.opt.fileencoding = 'utf-8'
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
