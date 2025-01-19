@@ -11,12 +11,19 @@ return require('packer').startup(function(use)
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
+  use('dense-analysis/ale')
 
   -- color schemes
   use("savq/melange-nvim")
-  use({"catppuccin/nvim", as = "catppuccin" })
+  use({"rose-pine/neovim", as = "rose-pine"})
+  use({"f4z3r/gruvbox-material.nvim", as = "gruvbox"})
+  use("RRethy/base16-nvim")
+  use({ "atelierbram/Base2Tone-nvim" })
 
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use "HiPhish/nvim-ts-rainbow2"
+  use('nvim-treesitter/nvim-treesitter', {
+    run = ':TSUpdate',
+  })
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
   use({
@@ -37,12 +44,18 @@ return require('packer').startup(function(use)
       {'saadparwaiz1/cmp_luasnip'},
       {'hrsh7th/cmp-nvim-lsp'},
       {'hrsh7th/cmp-nvim-lua'},
+      {'PaterJason/cmp-conjure'},
       {'L3MON4D3/LuaSnip'},
     }
   })
 
-  -- auto format
   use('sbdchd/neoformat')
+
+  -- Clojure
+  use({ 'Olical/conjure', ft = { "clojure", "fennel", "python" } })
+  use('tpope/vim-dispatch')
+  use('clojure-vim/vim-jack-in')
+  use('radenling/vim-dispatch-neovim')
 
   -- auto paring
   use({
@@ -52,8 +65,7 @@ return require('packer').startup(function(use)
   use({
     'windwp/nvim-ts-autotag',
     config = function() require('nvim-ts-autotag').setup {} end
-  }) 
-
+  })
 
   -- markdown-preview
   --install without yarn or npm 
@@ -62,19 +74,14 @@ return require('packer').startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
 
-  use({ 
-    "iamcco/markdown-preview.nvim", 
-    run = "cd app && npm install", 
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, 
-    ft = { "markdown" }, 
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
   })
-    
-  -- commentor
-  --
-  --[[ config = function()
-      require('Comment').setup()
-  end ]]
 
+  -- commentor
   use('numToStr/Comment.nvim')
   use('JoosepAlviste/nvim-ts-context-commentstring')
   --
@@ -82,6 +89,13 @@ return require('packer').startup(function(use)
   -- lualine
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    requires = { 'nvim-tree/nvim-web-devicons', opt = false }
   }
+
+  -- liveserver
+  use({
+    'barrett-ruth/live-server.nvim', 
+    build = "npm install -g live-server",
+    config = true,
+  })
 end)

@@ -8,9 +8,16 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, {})
   vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
-  vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
-  vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
 end)
+
+
+lsp_zero.configure('clojure_lsp', {
+  on_attach = function (client, bufnr)
+    vim.diagnostic.disable(bufnr)
+  end
+})
 
 -- auto setup & install langs server
 require('mason').setup({})
@@ -18,18 +25,39 @@ require('mason-lspconfig').setup({
   -- Replace the language servers listed here
   -- with the ones you want to install
   ensure_installed = {
-	  "tsserver",
+	  -- "tsserver",
 	  "gopls",
 	  "svelte",
 	  "html",
+    "cssls",
 	  "tailwindcss",
     "volar",
+    "graphql",
+    "lua_ls",
     "elixirls"
   },
   handlers = {
     lsp_zero.default_setup,
   }
 })
+
+-- rust anlyzer lsp setup
+require('lspconfig').rust_analyzer.setup({
+  on_attach = function(client, bufnr)
+    vim.lsp.inlay_hint.enable(false)
+  end
+})
+
+-- local inlay_hint_enabled = true
+-- function RustToggleInlayHint ()
+--   inlay_hint_enabled = inlay_hint_enabled and false or true
+--
+--   require('lspconfig').rust_analyzer.setup({
+--     on_attach = function(client, bufnr)
+--       vim.lsp.inlay_hint.enable(inlay_hint_enabled)
+--     end
+--   })
+-- end
 
 -- format on save
 lsp_zero.format_on_save({
@@ -55,7 +83,25 @@ cmp.setup({
     {name = "nvim_lsp"},
     {name = "buffer"},
   },
-  formatting = cmp_format,
+  -- formatting = cmp_format, 
+  formatting = {
+    -- changing the order of fields so the icon is the first
+    fields = {'menu', 'abbr', 'kind'},
+
+    -- here is where the change happens
+    format = function(entry, item)
+      local menu_icon = {
+        nvim_lsp = 'λ',
+        luasnip = '⋗',
+        buffer = 'Ω',
+        path = '🖫',
+        nvim_lua = 'Π',
+      }
+
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end
+  },
   mapping = cmp.mapping.preset.insert({
     ['<CR>'] = cmp.mapping.confirm({select = true}),
     ['J'] = cmp.mapping.select_next_item(),

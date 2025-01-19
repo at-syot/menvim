@@ -1,3 +1,5 @@
+-- vim.g.neoformat_run_all_formatters = 1
+
 -- Try project-local version of Prettier
 vim.g.neoformat_try_node_exe = 1
 
@@ -18,6 +20,9 @@ vim.g.neoformat_enabled_tsx = vim.g.neoformat_enabled_js
 vim.g.neoformat_enabled_typescript = vim.g.neoformat_enabled_js
 vim.g.neoformat_enabled_javascript = vim.g.neoformat_enabled_js
 
+vim.g.neoformat_enabled_go = {'goimports', 'gofumpt'}
+vim.g.neoformat_enabled_rust = {'rustfmt'};
+
 vim.cmd [[
-  autocmd BufWritePre *.js,*.ts,*.vue,*.svelte,*.tsx,*.jsx,*.md,*.yml,*.yaml Neoformat
+  autocmd BufWritePre *.js,*.ts,*.vue,*.svelte,*.tsx,*.jsx,*.md,*.yml,*.yaml,*.go,*.rs Neoformat
 ]]
