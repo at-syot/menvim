@@ -41,23 +41,22 @@ require('mason-lspconfig').setup({
   }
 })
 
--- rust anlyzer lsp setup
-require('lspconfig').rust_analyzer.setup({
-  on_attach = function(client, bufnr)
-    vim.lsp.inlay_hint.enable(false)
-  end
-})
+vim.api.nvim_create_user_command("LSPToggleInlayHint", function ()
+   local ft = vim.bo.filetype
+   local enabled = vim.lsp.inlay_hint.is_enabled()
+   if ft ~= "rust" then return end
 
--- local inlay_hint_enabled = true
--- function RustToggleInlayHint ()
---   inlay_hint_enabled = inlay_hint_enabled and false or true
---
---   require('lspconfig').rust_analyzer.setup({
---     on_attach = function(client, bufnr)
---       vim.lsp.inlay_hint.enable(inlay_hint_enabled)
---     end
---   })
--- end
+   if enabled then
+     enabled = false
+   else
+     enabled = true
+   end
+   vim.lsp.inlay_hint.enable(enabled)
+   print("inlay_hint now -- " .. tostring(enabled))
+end, {})
+
+vim.keymap.set('n', '<leader>rt', function() vim.cmd('LSPToggleInlayHint') end, {})
+
 
 -- format on save
 lsp_zero.format_on_save({
