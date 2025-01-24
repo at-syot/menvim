@@ -4,20 +4,20 @@ lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({buffer = bufnr})
   local opts = {buffer = bufnr}
 
-  vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, {})
-  vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
-  vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
-  vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', '<leader>vd', vim.diagnostic.open_float, opts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 end)
 
 
-lsp_zero.configure('clojure_lsp', {
-  on_attach = function (client, bufnr)
-    vim.diagnostic.disable(bufnr)
-  end
-})
+-- lsp_zero.configure('clojure_lsp', {
+--   on_attach = function (client, bufnr)
+--     vim.diagnostic.disable(bufnr)
+--   end
+-- })
 
 -- auto setup & install langs server
 require('mason').setup({})
@@ -38,27 +38,29 @@ require('mason-lspconfig').setup({
   },
   handlers = {
     lsp_zero.default_setup,
+    clojure_lsp = function()
+      require('lspconfig').clojure_lsp.setup({
+        on_attach = function(client, bufnr)
+          vim.diagnostic.disable(bufnr)
+        end
+      })
+    end
   }
 })
 
 vim.api.nvim_create_user_command("LSPToggleInlayHint", function ()
    local ft = vim.bo.filetype
-   local enabled = vim.lsp.inlay_hint.is_enabled()
+   local enabled = not vim.lsp.inlay_hint.is_enabled()
    if ft ~= "rust" then return end
 
-   if enabled then
-     enabled = false
-   else
-     enabled = true
-   end
    vim.lsp.inlay_hint.enable(enabled)
-   print("inlay_hint now -- " .. tostring(enabled))
+   print("inlay_hints -- " .. tostring(enabled))
 end, {})
 
 vim.keymap.set('n', '<leader>rt', function() vim.cmd('LSPToggleInlayHint') end, {})
 
 
--- format on save
+-- Format-on-save configuration
 lsp_zero.format_on_save({
 	format_opts = {
 		async = false,
@@ -66,9 +68,6 @@ lsp_zero.format_on_save({
 	},
 	servers = {
 		['lua'] = {'lua'},
-    -- ['tsserver'] = {'javascript', 'typescript'},
-		-- ['svelte'] = {'svelte'},
-    -- ['volar'] = {'vue'},
 		['gopls'] = {'go'},
     ['elixirls'] = {'elixir', 'ex'},
 	}

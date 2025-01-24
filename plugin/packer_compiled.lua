@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1696795921/share/lua/5.1/?.lua;/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1696795921/share/lua/5.1/?/init.lua;/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1696795921/lib/luarocks/rocks-5.1/?.lua;/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1696795921/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1696795921/lib/lua/5.1/?.so"
+local package_path_str = "/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1734355927/share/lua/5.1/?.lua;/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1734355927/share/lua/5.1/?/init.lua;/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1734355927/lib/luarocks/rocks-5.1/?.lua;/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1734355927/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/aiosdev/.cache/nvim/packer_hererocks/2.1.1734355927/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["Base2Tone-nvim"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/Base2Tone-nvim",
+    url = "https://github.com/atelierbram/Base2Tone-nvim"
+  },
   ["Comment.nvim"] = {
     loaded = true,
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/Comment.nvim",
@@ -84,15 +89,20 @@ _G.packer_plugins = {
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  catppuccin = {
+  ["base16-nvim"] = {
     loaded = true,
-    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/base16-nvim",
+    url = "https://github.com/RRethy/base16-nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-conjure"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/cmp-conjure",
+    url = "https://github.com/PaterJason/cmp-conjure"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
@@ -113,6 +123,23 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  conjure = {
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/opt/conjure",
+    url = "https://github.com/Olical/conjure"
+  },
+  gruvbox = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/f4z3r/gruvbox-material.nvim"
+  },
+  ["live-server.nvim"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/live-server.nvim",
+    url = "https://github.com/barrett-ruth/live-server.nvim"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
@@ -181,10 +208,14 @@ _G.packer_plugins = {
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
+  ["nvim-ts-rainbow2"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow2",
+    url = "https://github.com/HiPhish/nvim-ts-rainbow2"
+  },
   ["nvim-web-devicons"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
@@ -202,11 +233,6 @@ _G.packer_plugins = {
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
   },
-  ["solarized-osaka.nvim"] = {
-    loaded = true,
-    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/solarized-osaka.nvim",
-    url = "https://github.com/craftzdog/solarized-osaka.nvim"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -217,22 +243,46 @@ _G.packer_plugins = {
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["vim-dispatch"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/vim-dispatch",
+    url = "https://github.com/tpope/vim-dispatch"
+  },
+  ["vim-dispatch-neovim"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/vim-dispatch-neovim",
+    url = "https://github.com/radenling/vim-dispatch-neovim"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-jack-in"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/vim-jack-in",
+    url = "https://github.com/clojure-vim/vim-jack-in"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
 -- Config for: nvim-ts-autotag
 time([[Config for nvim-ts-autotag]], true)
 try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20nvim-ts-autotag\frequire\0", "config", "nvim-ts-autotag")
 time([[Config for nvim-ts-autotag]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType python ++once lua require("packer.load")({'conjure'}, { ft = "python" }, _G.packer_plugins)]]
+vim.cmd [[au FileType clojure ++once lua require("packer.load")({'conjure'}, { ft = "clojure" }, _G.packer_plugins)]]
+vim.cmd [[au FileType fennel ++once lua require("packer.load")({'conjure'}, { ft = "fennel" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

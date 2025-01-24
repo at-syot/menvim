@@ -11,7 +11,6 @@ return require('packer').startup(function(use)
 	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
-  use('dense-analysis/ale')
 
   -- color schemes
   use("savq/melange-nvim")
@@ -26,6 +25,8 @@ return require('packer').startup(function(use)
   })
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
+
+
   use({
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
@@ -56,6 +57,7 @@ return require('packer').startup(function(use)
   use('tpope/vim-dispatch')
   use('clojure-vim/vim-jack-in')
   use('radenling/vim-dispatch-neovim')
+
 
   -- auto paring
   use({
@@ -96,6 +98,6 @@ return require('packer').startup(function(use)
   use({
     'barrett-ruth/live-server.nvim', 
     build = "npm install -g live-server",
-    config = true,
+    -- config = true,
   })
 end)
