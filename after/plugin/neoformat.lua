@@ -80,10 +80,13 @@ function M.setup()
     pattern = '*',
     callback = function()
       local ft = vim.bo.filetype
+      if ft == 'clojure' then
+        vim.lsp.buf.format()
+        return 
+      end
+
       if formatters[ft] then
         vim.cmd('silent! Neoformat')
-      else
-        vim.lsp.buf.format()
       end
     end,
     group = vim.api.nvim_create_augroup('NeoformatAuto', { clear = true }),
