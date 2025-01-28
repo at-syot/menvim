@@ -18,8 +18,11 @@ function ColorMyPencils(color)
   -- vim.cmd.colorscheme("colorbuddy")
   --
 
+  -- vim.opt.background = 'dark'
+  -- vim.cmd.colorscheme("rose-pine")
+
   vim.opt.background = 'dark'
-  vim.cmd.colorscheme("rose-pine")
+  vim.cmd.color('melange')
 end
 
 ColorMyPencils()
