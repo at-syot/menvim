@@ -18,14 +18,20 @@ return require('packer').startup(function(use)
   use({"f4z3r/gruvbox-material.nvim", as = "gruvbox"})
   use("RRethy/base16-nvim")
   use({ "atelierbram/Base2Tone-nvim" })
+  use "EdenEast/nightfox.nvim"
 
-  use "HiPhish/nvim-ts-rainbow2"
+  use "HiPhish/rainbow-delimiters.nvim"
   use('nvim-treesitter/nvim-treesitter', {
     run = ':TSUpdate',
   })
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
 
+  -- Clojure
+  use({ 'Olical/conjure'})
+  use('tpope/vim-dispatch')
+  use('clojure-vim/vim-jack-in')
+  use('radenling/vim-dispatch-neovim')
 
   use({
     'VonHeikemen/lsp-zero.nvim',
@@ -51,13 +57,6 @@ return require('packer').startup(function(use)
   })
 
   use('sbdchd/neoformat')
-
-  -- Clojure
-  use({ 'Olical/conjure', ft = { "clojure", "fennel", "python" } })
-  use('tpope/vim-dispatch')
-  use('clojure-vim/vim-jack-in')
-  use('radenling/vim-dispatch-neovim')
-
 
   -- auto paring
   use({

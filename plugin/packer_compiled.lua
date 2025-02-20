@@ -125,10 +125,8 @@ _G.packer_plugins = {
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   conjure = {
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/opt/conjure",
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/conjure",
     url = "https://github.com/Olical/conjure"
   },
   gruvbox = {
@@ -176,6 +174,11 @@ _G.packer_plugins = {
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/neoformat",
     url = "https://github.com/sbdchd/neoformat"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
   ["nvim-autopairs"] = {
     config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
@@ -208,11 +211,6 @@ _G.packer_plugins = {
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
-  ["nvim-ts-rainbow2"] = {
-    loaded = true,
-    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow2",
-    url = "https://github.com/HiPhish/nvim-ts-rainbow2"
-  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -227,6 +225,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["rainbow-delimiters.nvim"] = {
+    loaded = true,
+    path = "/Users/aiosdev/.local/share/nvim/site/pack/packer/start/rainbow-delimiters.nvim",
+    url = "https://github.com/HiPhish/rainbow-delimiters.nvim"
   },
   ["rose-pine"] = {
     loaded = true,
@@ -274,15 +277,6 @@ time([[Config for nvim-ts-autotag]], false)
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
-vim.cmd [[augroup packer_load_aucmds]]
-vim.cmd [[au!]]
-  -- Filetype lazy-loads
-time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType python ++once lua require("packer.load")({'conjure'}, { ft = "python" }, _G.packer_plugins)]]
-vim.cmd [[au FileType clojure ++once lua require("packer.load")({'conjure'}, { ft = "clojure" }, _G.packer_plugins)]]
-vim.cmd [[au FileType fennel ++once lua require("packer.load")({'conjure'}, { ft = "fennel" }, _G.packer_plugins)]]
-time([[Defining lazy-load filetype autocommands]], false)
-vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

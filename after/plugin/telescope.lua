@@ -41,6 +41,6 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fd', function() builtin.diagnostics({bufnr=0}) end, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
- 
+
 -- telescope lsp
 vim.keymap.set('n', '<leader>ss', builtin.lsp_document_symbols, {})

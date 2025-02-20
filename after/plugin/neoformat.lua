@@ -80,10 +80,10 @@ function M.setup()
     pattern = '*',
     callback = function()
       local ft = vim.bo.filetype
-      if ft == 'clojure' then
-        vim.lsp.buf.format()
-        return 
-      end
+      -- if ft == 'clojure' then
+      --   vim.lsp.buf.format()
+      --   return 
+      -- end
 
       if formatters[ft] then
         vim.cmd('silent! Neoformat')
@@ -100,15 +100,6 @@ function M.setup()
       vim.cmd('!cljfmt fix ' .. buf_path)
     end
   end, { desc = '[C]ode [F]ormat', silent = true })
-
-  -- with lsp formating
-  -- vim.keymap.set('n', '<leader>cf', function()
-  --   if vim.lsp.buf.format then
-  --     vim.lsp.buf.format()
-  --   else
-  --     vim.cmd('Neoformat')
-  --   end
-  -- end, { desc = 'Format code' })
 end
 
 -- Optional: Add error handling for missing formatters

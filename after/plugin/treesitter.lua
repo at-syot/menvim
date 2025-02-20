@@ -31,25 +31,6 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    strategy = {
-      require("ts-rainbow").strategy["global"]
-    },
-    disable = function (lang, buf)
-      -- local filetypes = {"clojure"}
-      -- return not vim.tbl_contains(filetypes, lang)
-      return lang ~= "clojure"
-
-      -- local allowed = { "clojure" }
-      -- local should_disable = not vim.tbl_contains(allowed, lang)
-
-      -- Debugging: Print the current language and status
-      -- print("Checking lang:", lang, " -> Disabled:", should_disable)
-      -- return should_disable
-    end
-  },
   incremental_selection = {
     enable = true, -- Enable the feature
     disable = function (lang, buf)
@@ -58,9 +39,9 @@ require'nvim-treesitter.configs'.setup {
     end,
     keymaps = {
       init_selection = "gnn", -- Start selection (normal mode)
-      node_incremental = "<c-J>", -- Increment selection (normal mode)
+      node_incremental = "ak", -- Increment selection (normal mode)
       scope_incremental = "grc", -- Increment to the scope (normal mode)
-      node_decremental = "<c-K>", -- Decrement selection (normal mode)
+      node_decremental = "aj", -- Decrement selection (normal mode)
     },
   },
 }

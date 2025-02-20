@@ -38,17 +38,6 @@ require('mason-lspconfig').setup({
   },
   handlers = {
     lsp_zero.default_setup,
-    function (server_name)
-      print("server_name" .. server_name)
-      require('lspconfig')[server_name].setup({
-        on_attach = function()
-          vim.diagnostic.config({
-            virtual_text = false,
-            signs = true,
-          })
-        end
-      })
-    end,
     clojure_lsp = function()
       require('lspconfig').clojure_lsp.setup({
         on_attach = function(client, bufnr)
@@ -57,6 +46,12 @@ require('mason-lspconfig').setup({
       })
     end
   }
+})
+
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  underline = true
 })
 
 vim.api.nvim_create_user_command("LSPToggleInlayHint", function ()
@@ -69,7 +64,6 @@ vim.api.nvim_create_user_command("LSPToggleInlayHint", function ()
 end, {})
 
 vim.keymap.set('n', '<leader>rt', function() vim.cmd('LSPToggleInlayHint') end, {})
-
 
 -- Format-on-save configuration
 lsp_zero.format_on_save({
@@ -91,6 +85,7 @@ cmp.setup({
   sources = {
     {name = "nvim_lsp"},
     {name = "buffer"},
+    {name = "conjure"}
   },
   -- formatting = cmp_format, 
   formatting = {
