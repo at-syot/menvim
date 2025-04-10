@@ -12,13 +12,14 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -- cursor
+  use("sphamba/smear-cursor.nvim")
+
   -- color schemes
   use("savq/melange-nvim")
   use({"rose-pine/neovim", as = "rose-pine"})
-  use({"f4z3r/gruvbox-material.nvim", as = "gruvbox"})
-  use("RRethy/base16-nvim")
-  use({ "atelierbram/Base2Tone-nvim" })
   use "EdenEast/nightfox.nvim"
+  use "rebelot/kanagawa.nvim"
 
   use "HiPhish/rainbow-delimiters.nvim"
   use('nvim-treesitter/nvim-treesitter', {
@@ -32,6 +33,12 @@ return require('packer').startup(function(use)
   use('tpope/vim-dispatch')
   use('clojure-vim/vim-jack-in')
   use('radenling/vim-dispatch-neovim')
+  use({
+    "julienvincent/nvim-paredit",
+    config = function()
+      require("nvim-paredit").setup()
+    end
+  })
 
   use({
     'VonHeikemen/lsp-zero.nvim',
@@ -56,13 +63,19 @@ return require('packer').startup(function(use)
     }
   })
 
+  use({
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    requires = { {"nvim-lua/plenary.nvim"} }
+  })
+
   use('sbdchd/neoformat')
 
   -- auto paring
-  use({
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  })
+  -- use({
+  --   "windwp/nvim-autopairs",
+  --   config = function() require("nvim-autopairs").setup {} end
+  -- })
   use({
     'windwp/nvim-ts-autotag',
     config = function() require('nvim-ts-autotag').setup {} end
